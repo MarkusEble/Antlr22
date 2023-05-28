@@ -108,6 +108,11 @@ public class HelloWorldParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof HelloWorldListener ) ((HelloWorldListener)listener).exitGreeting(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof HelloWorldVisitor ) return ((HelloWorldVisitor<? extends T>)visitor).visitGreeting(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final GreetingContext greeting() throws RecognitionException {
@@ -149,6 +154,11 @@ public class HelloWorldParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof HelloWorldListener ) ((HelloWorldListener)listener).exitIdentifier(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof HelloWorldVisitor ) return ((HelloWorldVisitor<? extends T>)visitor).visitIdentifier(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

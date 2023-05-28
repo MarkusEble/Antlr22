@@ -7,7 +7,7 @@ public class HelloWorldMain {
 
 	public static void main(String[] args) throws Exception {
 		// create input stream
-		CharStream input = CharStreams.fromFileName(args[0]);
+		CharStream input = CharStreams.fromFileName("HelloWorld.txt");
 		// create lexer
 		compiler.HelloWorldLexer lexer = new compiler.HelloWorldLexer(input);
 		// create token stream
@@ -19,10 +19,5 @@ public class HelloWorldMain {
 		ParseTree tree = parser.greeting();
 		// output parse tree
 		System.out.println(tree.toStringTree(parser));
-		// build tree walker
-		ParseTreeWalker walker = new ParseTreeWalker();
-		// visit tree
-		//walker.walk(new HelloWorldPrintListener(), tree);
-
 	}
 }
